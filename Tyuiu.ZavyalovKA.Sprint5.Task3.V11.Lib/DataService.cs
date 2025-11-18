@@ -8,11 +8,11 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task3.V11.Lib
         public string SaveToFileTextData(int x)
         {
             string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask3.bin");
-            double z = 4 - Math.Pow(x, 3) / Math.Pow(x, 2);
+            double z = (4 - Math.Pow(x, 3)) / Math.Pow(x, 2);
             z = Math.Round(z, 3);
-            using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.OpenOrCreate), Encoding.UTF8))
+            using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.OpenOrCreate)))
             {
-                writer.Write(BitConverter.GetBytes(z));
+                writer.Write(z);
             }
             return path;
         }

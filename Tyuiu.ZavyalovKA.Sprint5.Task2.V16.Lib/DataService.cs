@@ -46,14 +46,11 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task2.V16.Lib
                 }
                 if (i != rows - 1)
                 {
-                    File.AppendAllText(path, str + Environment.NewLine);
-                }
-                else
-                {
-                    File.AppendAllText(path, str);
+                    str = str + "\n";
                 }
             }
-            str = "";
+            File.AppendAllText(path, str);
+
             return path;
         }
     }

@@ -10,7 +10,7 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task4.V29.Lib
             strX = strX.Trim().Replace(" ", "").Replace("\n", "").Replace("\r", "").Replace("\t", "");
             strX = strX.Replace(",", ".");
             double x = double.Parse(strX, System.Globalization.CultureInfo.InvariantCulture);
-            double res = ((x / 2) * x) + Math.Sin(Math.Pow(x, 2));
+            double res = (x / (2 * x)) + Math.Sin(Math.Pow(x, 2));
             return Math.Round(res, 3);
         }
     }

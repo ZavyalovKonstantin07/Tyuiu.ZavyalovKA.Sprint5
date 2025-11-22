@@ -9,7 +9,7 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task4.V29.Lib
             string strX = File.ReadAllText(path);
             double x = Convert.ToDouble(strX);
             double res = ((x / 2) * x) + Math.Sin(Math.Pow(x, 2));
-            Math.Round(res, 3);
+            res = Math.Round(res, 3);
             return res;
         }
     }

@@ -15,7 +15,7 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task5.V15.Lib
                 string cleanNum = numStr.Trim().Replace(",", ".");
                 if (double.TryParse(cleanNum, out double number))
                 {
-                    if (number % 5 == 0 && number < min)
+                    if(number % 5 == 0 && number > 0 && number < min)
                     {
                         min = number;
                     }

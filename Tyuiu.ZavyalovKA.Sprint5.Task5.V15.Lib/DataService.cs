@@ -22,7 +22,7 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task5.V15.Lib
                 }
             }
             return min == double.MaxValue ? 0 : min;
-        }
+        } 
     }
 }
 

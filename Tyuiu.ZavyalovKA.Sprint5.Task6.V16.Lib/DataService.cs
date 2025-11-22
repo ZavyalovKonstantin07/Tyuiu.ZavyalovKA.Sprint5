@@ -1,6 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Text.RegularExpressions;
+using System;
+
 using System.IO;
+using System.Linq;
+using System.Reflection.Metadata;
+using System.Text.RegularExpressions;
 using tyuiu.cources.programming.interfaces.Sprint5;
 namespace Tyuiu.ZavyalovKA.Sprint5.Task6.V16.Lib
 {
@@ -13,8 +17,8 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task6.V16.Lib
             if (string.IsNullOrEmpty(content))
                 return 0;
 
-            string[] words = content.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-            return words.Count(word => word.All(c => (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')));
+            MatchCollection matches = Regex.Matches(content, @"\b[a-zA-Z]+\b");
+            return matches.Count;
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task7.V8.Lib
                         {
                             strLine = strLine + currentChar;
                         }
-                        File.AppendAllText(pathSaveFile, strLine + Environment.NewLine);
+                        File.AppendAllText(pathSaveFile, strLine);
                         strLine = "";
                     }
                 }

@@ -9,31 +9,40 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task7.V8.Lib
         {
             public string LoadDataAndSave(string path)
             {
-                // Создаем временный файл для результата
-                string tempFile = Path.GetTempFileName();
-                string pathSaveFile = Path.Combine(Path.GetDirectoryName(tempFile), "OutPutDataFileTask7V8.txt");
+            string pathSaveFile = @"C:\Users\Завьялов Константин\source\repos\Tyuiu.ZavyalovKA.Sprint5\Tyuiu.ZavyalovKA.Sprint5.Task7.V8\bin\Debug\net8.0\OutPutDataFileTask7V8.txt";
+            FileInfo fileInfo = new FileInfo(pathSaveFile);
+            bool FileExist = fileInfo.Exists;
 
-                // Удаляем временный файл и используем нужное имя
-                File.Delete(tempFile);
-
-                // Читаем и обрабатываем файл
-                string text = File.ReadAllText(path, Encoding.UTF8);
-                StringBuilder result = new StringBuilder();
-
-                foreach (char c in text)
-                {
-                    if (c >= 'А' && c <= 'Я')
-                        result.Append((char)(c + 32));
-                    else if (c == 'Ё')
-                        result.Append('ё');
-                    else
-                        result.Append(c);
-                }
-
-                File.WriteAllText(pathSaveFile, result.ToString(), Encoding.UTF8);
-                return pathSaveFile;
+            if (FileExist)
+            {
+                File.Delete(pathSaveFile);
             }
+
+            string strLine = "";
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    for (int i = 0; i < line.Length; i++)
+                    {
+                        char currentChar = line[i];
+                        if (currentChar >= 'А' && currentChar <= 'Я')
+                        {
+                            strLine = strLine + (char)(currentChar + 32);
+                        }
+                        else
+                        {
+                            strLine = strLine + currentChar;
+                        }
+                        File.AppendAllText(pathSaveFile, strLine);
+                        strLine = "";
+                    }
+                }
+            }
+            return pathSaveFile;
         }
     }
+}
 
 

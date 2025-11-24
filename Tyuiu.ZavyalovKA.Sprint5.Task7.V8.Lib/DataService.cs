@@ -5,28 +5,35 @@ using System.Text;
 using tyuiu.cources.programming.interfaces.Sprint5;
 namespace Tyuiu.ZavyalovKA.Sprint5.Task7.V8.Lib
 {
-    public class DataService : ISprint5Task7V8
-    {
-        public string LoadDataAndSave(string path)
+        public class DataService : ISprint5Task7V8
         {
-            string outputPath = path.Replace("InPut", "OutPut");
-            string text = File.ReadAllText(path);
-
-            char[] result = new char[text.Length];
-            for (int i = 0; i < text.Length; i++)
+            public string LoadDataAndSave(string path)
             {
-                char c = text[i];
-                if (c >= 'А' && c <= 'Я')
-                    result[i] = (char)(c + 32);
-                else if (c == 'Ё')
-                    result[i] = 'ё';
-                else
-                    result[i] = c;
-            }
+                // Создаем временный файл для результата
+                string tempFile = Path.GetTempFileName();
+                string pathSaveFile = Path.Combine(Path.GetDirectoryName(tempFile), "OutPutDataFileTask7V8.txt");
 
-            File.WriteAllText(outputPath, new string(result));
-            return outputPath;
+                // Удаляем временный файл и используем нужное имя
+                File.Delete(tempFile);
+
+                // Читаем и обрабатываем файл
+                string text = File.ReadAllText(path, Encoding.UTF8);
+                StringBuilder result = new StringBuilder();
+
+                foreach (char c in text)
+                {
+                    if (c >= 'А' && c <= 'Я')
+                        result.Append((char)(c + 32));
+                    else if (c == 'Ё')
+                        result.Append('ё');
+                    else
+                        result.Append(c);
+                }
+
+                File.WriteAllText(pathSaveFile, result.ToString(), Encoding.UTF8);
+                return pathSaveFile;
+            }
         }
     }
-}
+
 

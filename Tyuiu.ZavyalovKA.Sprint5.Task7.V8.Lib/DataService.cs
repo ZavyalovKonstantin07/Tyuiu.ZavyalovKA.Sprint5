@@ -19,7 +19,7 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task7.V8.Lib
             }
 
             string strLine = "";
-            using (StreamReader reader = new(path))
+            using (StreamReader reader = new StreamReader(path))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)

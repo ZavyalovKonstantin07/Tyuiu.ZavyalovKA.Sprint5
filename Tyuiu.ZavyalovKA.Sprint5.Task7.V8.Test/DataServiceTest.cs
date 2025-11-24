@@ -8,7 +8,7 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task7.V8.Test
         [TestMethod]
         public void TestMethod1()
         {
-            string path = @"C:\Users\Завьялов Константин\source\repos\Tyuiu.ZavyalovKA.Sprint5\Tyuiu.ZavyalovKA.Sprint5.Task7.V8\bin\Debug\net8.0\InPutDataFileTask7V8.txt";
+            string path = @"C:\Users\Завьялов Константин\source\repos\Tyuiu.ZavyalovKA.Sprint5\Tyuiu.ZavyalovKA.Sprint5.Task7.V8\bin\Debug\net8.0\OutPutDataFileTask7V8.txt";
             FileInfo fileInfo = new FileInfo(path);
             bool FileExist = fileInfo.Exists;
             bool wait = true;

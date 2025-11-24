@@ -1,12 +1,22 @@
 ﻿using System.IO;
-using tyuiu.cources.programming.interfaces.Sprint5;
+using System.Reflection;
 using System.Security;
+using tyuiu.cources.programming.interfaces.Sprint5;
 namespace Tyuiu.ZavyalovKA.Sprint5.Task7.V8.Lib
 {
     public class DataService : ISprint5Task7V8
     {
         public string LoadDataAndSave(string path)
         {
+            string pathSaveFile = @"C:\Users\Завьялов Константин\source\repos\Tyuiu.ZavyalovKA.Sprint5\Tyuiu.ZavyalovKA.Sprint5.Task7.V8\bin\Debug\net8.0\OutPutDataFileTask7V8.txt";
+            FileInfo fileInfo = new FileInfo(pathSaveFile);
+            bool FileExist = fileInfo.Exists;
+
+            if (FileExist)
+            {
+                File.Delete(path);
+            }
+
             string strLine = "";
             using (StreamReader reader = new StreamReader(path))
             {
@@ -24,10 +34,12 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task7.V8.Lib
                         {
                             strLine = strLine + currentChar;
                         }
+                        File.AppendAllText(pathSaveFile, strLine + Environment.NewLine);
+                        strLine = "";
                     }
                 }
             }
-            return path;
+            return pathSaveFile;
         }
     }
 }

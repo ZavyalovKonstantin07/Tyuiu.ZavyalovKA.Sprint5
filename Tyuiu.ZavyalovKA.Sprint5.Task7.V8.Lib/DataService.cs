@@ -9,38 +9,23 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task7.V8.Lib
     {
         public string LoadDataAndSave(string path)
         {
-            string pathSaveFile = @"C:\Users\Завьялов Константин\source\repos\Tyuiu.ZavyalovKA.Sprint5\Tyuiu.ZavyalovKA.Sprint5.Task7.V8\bin\Debug\net8.0\OutPutDataFileTask7V8.txt";
-            FileInfo fileInfo = new FileInfo(pathSaveFile);
-            bool FileExist = fileInfo.Exists;
+            string outputPath = path.Replace("InPut", "OutPut");
+            string text = File.ReadAllText(path);
 
-            if (FileExist)
+            char[] result = new char[text.Length];
+            for (int i = 0; i < text.Length; i++)
             {
-                File.Delete(pathSaveFile);
+                char c = text[i];
+                if (c >= 'А' && c <= 'Я')
+                    result[i] = (char)(c + 32);
+                else if (c == 'Ё')
+                    result[i] = 'ё';
+                else
+                    result[i] = c;
             }
 
-            string strLine = "";
-            using (StreamReader reader = new StreamReader(path))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    for (int i = 0; i < line.Length; i++)
-                    {
-                        char currentChar = line[i];
-                        if (currentChar >= 'А' && currentChar <= 'Я')
-                        {
-                            strLine = strLine + (char)(currentChar + 32);
-                        }
-                        else
-                        {
-                            strLine = strLine + currentChar;
-                        }
-                        File.AppendAllText(pathSaveFile, strLine);
-                        strLine = "";
-                    }
-                }
-            }
-            return pathSaveFile;
+            File.WriteAllText(outputPath, new string(result));
+            return outputPath;
         }
     }
 }

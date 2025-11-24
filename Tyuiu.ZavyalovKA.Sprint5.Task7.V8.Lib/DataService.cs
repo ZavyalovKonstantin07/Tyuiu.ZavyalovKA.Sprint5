@@ -9,40 +9,24 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task7.V8.Lib
         {
             public string LoadDataAndSave(string path)
             {
-            string pathSaveFile = @"C:\Users\Завьялов Константин\source\repos\Tyuiu.ZavyalovKA.Sprint5\Tyuiu.ZavyalovKA.Sprint5.Task7.V8\bin\Debug\net8.0\OutPutDataFileTask7V8.txt";
-            FileInfo fileInfo = new FileInfo(pathSaveFile);
-            bool FileExist = fileInfo.Exists;
+                string tempFile = Path.GetTempFileName();
+                string pathSaveFile = Path.Combine(Path.GetDirectoryName(tempFile), "OutPutDataFileTask7V8.txt");
+                File.Delete(tempFile);
+                string text = File.ReadAllText(path);
+                StringBuilder result = new StringBuilder();
 
-            if (FileExist)
-            {
-                File.Delete(pathSaveFile);
-            }
-
-            string strLine = "";
-            using (StreamReader reader = new StreamReader(path))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                foreach (char c in text)
                 {
-                    for (int i = 0; i < line.Length; i++)
-                    {
-                        char currentChar = line[i];
-                        if (currentChar >= 'А' && currentChar <= 'Я')
-                        {
-                            strLine = strLine + (char)(currentChar + 32);
-                        }
-                        else
-                        {
-                            strLine = strLine + currentChar;
-                        }
-                        File.AppendAllText(pathSaveFile, strLine);
-                        strLine = "";
-                    }
+                    if (c >= 'А' && c <= 'Я')
+                        result.Append((char)(c + 32));
+                    else
+                        result.Append(c);
                 }
+
+                File.WriteAllText(pathSaveFile, result.ToString());
+                return pathSaveFile;
             }
-            return pathSaveFile;
         }
     }
-}
 
 

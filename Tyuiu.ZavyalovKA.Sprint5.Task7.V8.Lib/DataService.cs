@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Reflection;
 using System.Security;
+using System.Text;
 using tyuiu.cources.programming.interfaces.Sprint5;
 namespace Tyuiu.ZavyalovKA.Sprint5.Task7.V8.Lib
 {
@@ -14,7 +15,7 @@ namespace Tyuiu.ZavyalovKA.Sprint5.Task7.V8.Lib
 
             if (FileExist)
             {
-                File.Delete(path);
+                File.Delete(pathSaveFile);
             }
 
             string strLine = "";
